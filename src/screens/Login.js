@@ -2,11 +2,18 @@ import { SafeAreaView, StyleSheet, useWindowDimensions, View } from 'react-nativ
 import React from 'react'
 import { Image } from 'react-native';
 import { Button } from "@rneui/themed";
+import { useNavigation } from '@react-navigation/native';
 import Gif from "../assets/app_logo.gif"
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const Login = () => {
   const {height} = useWindowDimensions();
+  const navigation = useNavigation();
+
+
+  const onSignInPressed = () => {
+    navigation.navigate("Lens");
+  };
 
   return (
     <SafeAreaView style={styles.root}>
@@ -25,7 +32,8 @@ const Login = () => {
             />
           }
           buttonStyle={{ backgroundColor: 'rgba(219, 68, 55, 1)' }}
-          titleStyle={{ color: 'white', marginHorizontal: 20 }} >
+          titleStyle={{ color: 'white', marginHorizontal: 20 }} 
+          onPress={onSignInPressed} >
         </Button>
         <Button
           title="Sign in with Apple"
@@ -40,7 +48,8 @@ const Login = () => {
             />
           }
           buttonStyle={{ backgroundColor: 'rgba(85, 85, 85, 1)' }}
-          titleStyle={{ color: 'white', marginHorizontal: 20 }} >
+          titleStyle={{ color: 'white', marginHorizontal: 20 }} 
+          onPress={onSignInPressed} >
         </Button>
       </View>
     </SafeAreaView>
