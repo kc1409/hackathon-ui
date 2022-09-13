@@ -7,17 +7,15 @@ const Result = ({navigation, route}) => {
 
   const resultBanner =
     score > 10
-      ? 'https://cdni.iconscout.com/illustration/premium/thumb/men-celebrating-victory-4587301-3856211.png'
-      : 'https://cdni.iconscout.com/illustration/free/thumb/concept-about-business-failure-1862195-1580189.png';
+      ? require('./../assets/images/personalGoal.gif')
+      : require('./../assets/images/Task.gif');
   return (
     <View style={styles.container}>
       <Title titleText="RESULTS" />
       <Text style={styles.scoreValue}>{score}</Text>
       <View style={styles.bannerContainer}>
         <Image
-          source={{
-            uri: resultBanner,
-          }}
+          source={resultBanner}
           style={styles.banner}
           resizeMode="contain"
         />
@@ -35,8 +33,10 @@ export default Result;
 
 const styles = StyleSheet.create({
   banner: {
-    height: 300,
-    width: 300,
+    height: 350,
+    width: 350,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   bannerContainer: {
     justifyContent: 'center',

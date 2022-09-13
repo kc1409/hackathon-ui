@@ -1,7 +1,7 @@
 import React from 'react';
 import {useState} from 'react';
 import {useEffect} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native';
 
 const shuffleArray = array => {
   for (let i = array.length - 1; i > 0; i--) {
@@ -20,7 +20,7 @@ const Quiz = ({navigation}) => {
   const getQuiz = async () => {
     setIsLoading(true);
     const url =
-      'https://opentdb.com/api.php?amount=10&type=multiple&encode=url3986';
+      'https://opentdb.com/api.php?amount=10&category=11&difficulty=medium&type=multiple&encode=url3986';
     const res = await fetch(url);
     const data = await res.json();
     setQuestions(data.results);
@@ -75,7 +75,13 @@ const Quiz = ({navigation}) => {
             alignItems: 'center',
             height: '100%',
           }}>
-          <Text style={{fontSize: 32, fontWeight: '700'}}>LOADING...</Text>
+          <View style={styles.bannerContainer}>
+            <Image
+              source={require('./../assets/images/mental-health-loading.gif')}
+              style={styles.loading}
+              resizeMode="contain"
+            />
+          </View>
         </View>
       ) : (
         questions && (
@@ -194,5 +200,9 @@ const styles = StyleSheet.create({
   },
   parent: {
     height: '100%',
+  },
+  loading: {
+    height: 150,
+    width: 150,
   },
 });
